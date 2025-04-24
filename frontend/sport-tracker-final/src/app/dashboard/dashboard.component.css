@@ -1,0 +1,72 @@
+.dashboard-container {
+  padding: 24px;
+}
+
+.toolbar-card {
+  margin-bottom: 16px;
+  padding: 16px;
+}
+
+.workout-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px dashed #ccc;
+}
+
+.workout-content {
+  flex: 1;
+}
+
+
+.toolbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-card {
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.form-layout {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.form-field {
+  flex: 1 1 200px;
+  min-width: 200px;
+}
+
+.workout-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+}
+
+.empty-text {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  margin-top: 12px;
+}
+
+.mt-2 {
+  margin-top: 16px;
+}
+
+.mt-4 {
+  margin-top: 32px;
+}
+
+.logout-button {
+  background-color: #e0e0e0;
+  color: #000;
+}

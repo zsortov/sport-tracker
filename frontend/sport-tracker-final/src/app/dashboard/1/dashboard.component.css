@@ -1,0 +1,56 @@
+.dashboard-container {
+    padding: 24px;
+  }
+  
+  .toolbar-card {
+    margin-bottom: 16px;
+  }
+  
+  .toolbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .main-card {
+    padding: 16px;
+  }
+  
+  .form-layout {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .form-field {
+    flex: 1 1 200px;
+    min-width: 200px;
+  }
+  
+  .workout-entry {
+    display: block;
+    width: 100%;
+  }
+  
+  .mt-2 {
+    margin-top: 16px;
+  }
+  
+  .mt-4 {
+    margin-top: 32px;
+  }
+  
+  .mt-4 {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 8px;
+  }
+  
+  .logout-button {
+    background-color: #e0e0e0;
+    color: #000;
+  }
+
+  

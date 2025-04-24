@@ -1,0 +1,27 @@
+/* styles.css */
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+.dark-theme {
+  --background: #303030;
+  background-color: var(--background);
+  color: white;
+}
+
+.light-theme {
+  --background: #ffffff;
+  background-color: var(--background);
+  color: black;
+}
+
+body.dark-theme {
+  background-color: #303030;
+  color: white;
+}
+
+body.light-theme {
+  background-color: #ffffff;
+  color: black;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

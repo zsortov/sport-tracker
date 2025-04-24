@@ -1,0 +1,12 @@
+
+<div class="container mt-5">
+  <h2 class="mb-4">Заметки</h2>
+  <form (ngSubmit)="addNote()" class="input-group mb-3">
+    <input [(ngModel)]="newNote" name="note" type="text" class="form-control" placeholder="Новая заметка" required />
+    <button type="submit" class="btn btn-primary">Добавить</button>
+  </form>
+
+  <ul class="list-group">
+    <li *ngFor="let note of notes" class="list-group-item">{{ note.text }}</li>
+  </ul>
+</div>

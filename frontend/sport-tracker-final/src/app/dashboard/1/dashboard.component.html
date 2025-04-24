@@ -1,0 +1,46 @@
+<div class="dashboard-container">
+  <mat-card class="toolbar-card">
+    <div class="toolbar-content">
+      <h2>Тренировки</h2>
+      <button mat-button class="logout-button" (click)="logout()">Выйти</button>
+    </div>
+  </mat-card>
+
+    <form (ngSubmit)="addWorkout()" class="form-layout">
+      <mat-form-field class="form-field">
+        <mat-label>Упражнение</mat-label>
+        <mat-select [(ngModel)]="newExerciseId" name="exercise" required>
+          <mat-option value="" disabled>Выберите упражнение</mat-option>
+          <mat-option *ngFor="let ex of exercises" [value]="ex.id">{{ ex.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Длительность (мин)</mat-label>
+        <input matInput [(ngModel)]="newDuration" name="duration" type="number" required />
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">
+        Добавить
+      </button>
+    </form>
+
+    <mat-error *ngIf="message" class="mt-2">{{ message }}</mat-error>
+
+    <div *ngIf="message" class="coach-message">
+      💡 {{ message }}
+    </div>
+    
+
+    <mat-list>
+      <mat-list-item *ngFor="let w of workouts">
+        <span class="workout-entry">
+          <strong>{{ w.date }}</strong> • {{ getExerciseName(w.exercise) }} • {{ w.duration }} мин
+          <button (click)="deleteWorkout(w.id)">Удалить</button>
+        </span>
+      </mat-list-item>
+    </mat-list>
+
+    <h5>Прогресс</h5>
+    <canvas id="workoutChart" height="100"></canvas>
+</div>

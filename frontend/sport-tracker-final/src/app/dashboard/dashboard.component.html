@@ -1,0 +1,89 @@
+<div class="dashboard-container">
+  <mat-card class="toolbar-card">
+    <div class="toolbar-content">
+      <h2>🏃 Тренировки</h2>
+      <button mat-button class="logout-button" (click)="logout()">Выйти</button>
+    </div>
+  </mat-card>
+
+  <mat-card class="main-card">
+    <mat-tab-group>
+      <mat-tab label="Live">
+        <form *ngIf="!startTime" class="form-layout">
+          <mat-form-field class="form-field">
+            <mat-label>Упражнение</mat-label>
+            <mat-select [(ngModel)]="newExerciseId" name="exercise" required>
+              <mat-option value="" disabled>Выберите упражнение</mat-option>
+              <mat-option *ngFor="let ex of exercises" [value]="ex.id">{{ getExerciseIcon(ex.name) }} {{ ex.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="form-buttons">
+            <button mat-raised-button color="primary" (click)="startWorkout()">▶ Начать тренировку</button>
+          </div>
+        </form>
+
+        <div *ngIf="startTime" class="form-layout live-mode">
+          <p>⏱️ Тренировка идёт... {{ getElapsedTime() }}</p>
+          <button mat-raised-button color="warn" (click)="stopWorkout()">⏹ Завершить тренировку</button>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Вручную">
+        <form class="form-layout" (ngSubmit)="addWorkout()">
+          <mat-form-field class="form-field">
+            <mat-label>Упражнение</mat-label>
+            <mat-select [(ngModel)]="newExerciseId" name="exerciseManual" required>
+              <mat-option value="" disabled>Выберите упражнение</mat-option>
+              <mat-option *ngFor="let ex of exercises" [value]="ex.id">{{ getExerciseIcon(ex.name) }} {{ ex.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="form-field">
+            <mat-label>Длительность (мин)</mat-label>
+            <input matInput [(ngModel)]="newDuration" name="durationManual" type="number" required>
+          </mat-form-field>
+
+          <div class="form-buttons">
+            <button mat-raised-button color="accent" type="submit">💾 Добавить вручную</button>
+          </div>
+        </form>
+      </mat-tab>
+    </mat-tab-group>
+
+    <ng-container *ngIf="workouts.length; else noWorkouts">
+      <p class="coach-tip" *ngIf="message">{{ message }}</p>
+    </ng-container>
+
+    <ng-template #noWorkouts>
+      <p class="empty-text">Нет добавленных тренировок. Начни прямо сейчас! 💪</p>
+    </ng-template>
+
+    <div *ngIf="workouts.length > 0">
+      <div *ngFor="let w of workouts" class="workout-row">
+        <div class="workout-content">
+          📅 <strong>{{ w.date }}</strong> • {{ getExerciseIcon(getExerciseName(w.exercise)) }} {{ getExerciseName(w.exercise) }} • ⏱️ {{ w.duration }} мин
+        </div>
+        <button mat-icon-button color="warn" (click)="deleteWorkout(w.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-card>
+
+  <mat-card class="main-card mt-4">
+    <h5>🎯 Цель недели</h5>
+    <mat-progress-bar mode="determinate" [value]="getProgressValue()"></mat-progress-bar>
+    <p>{{ done }} / {{ goal }} мин выполнено</p>
+
+    <p *ngIf="getProgressValue() >= 100" class="success-text">
+      ✅ Поздравляем! Вы выполнили недельный план! 🔥
+    </p>
+    
+  </mat-card>
+
+  <mat-card class="main-card mt-4">
+    <h5>📊 Прогресс по дням</h5>
+    <canvas id="workoutChart" height="100"></canvas>
+  </mat-card>
+</div>
